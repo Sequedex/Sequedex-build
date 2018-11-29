@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+    <layout class="ch.qos.logback.classic.html.HTMLLayout">
+      <Pattern>%relative%date{yyyy-mon-dd HH:mm:ss.SSS}%thread%mdc%level%msg</Pattern>
+    </layout>
+    </encoder>
+    <File>${user.home}/.logback.html</File>
+    <append>false</append>
+  </appender>
+  <root level="DEBUG">
+    <appender-ref ref="FILE"/>
+  </root>
+  
+</configuration>

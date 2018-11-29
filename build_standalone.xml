@@ -1,0 +1,76 @@
+<project name="project" default="dist" basedir=".">
+    <property name="src.dir" location="src/java"/>
+    <property name="build.dir" location="build"/>
+    <property name="classes.dir" location="${build.dir}/classes"/>
+    <property name="dist.dir" location="sequedex"/>
+    <property name="lib.dir" location="${dist.dir}/lib"/>
+    <property name="liblib.dir" location="${lib.dir}/lib"/>
+    <property name="dep.dir" location="lib"/>
+    <property name="jar.file" location="${lib.dir}/sequescan.jar"/>
+    <description> Sequedex V2 build file</description>
+    
+    <path id="classpath">
+        <fileset dir="${dep.dir}" includes="**/*.jar"/>
+    </path>
+   
+    <target name="init">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+        <mkdir dir="${build.dir}"/>
+    </target>
+ 
+    <target name="compile" depends="init">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
+    </target>
+    
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${liblib.dir}"/>
+        <copy todir="${liblib.dir}">
+            <fileset dir="${dep.dir}"/>
+        </copy>
+        <path id="jarpath">
+            <fileset dir="${liblib.dir}" includes="**/*.jar"/>
+        </path>
+        <manifestclasspath property="lib.list" jarfile="${jar.file}">
+            <classpath refid="jarpath"/>
+        </manifestclasspath>
+        <jar destfile="${jar.file}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="gov.lanl.sequescan.Sequescan"/>
+                <attribute name="Class-Path" value="${lib.list}"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="dist" depends="jar">
+       <copy file="etc/sequescan/sequescan.conf" todir="${dist.dir}/etc/sequescan" overwrite="true"/>
+       <copy todir="${dist.dir}/data">
+           <fileset dir="data/"/>
+       </copy>
+       <copy todir="${dist.dir}/doc">
+           <fileset dir="doc/"/>
+       </copy>
+       <copy todir="${dist.dir}/etc/archy">
+             <fileset dir="etc/archy"/>
+       </copy>
+       <copy todir="${dist.dir}/etc/trees">
+             <fileset dir="etc/trees"/>
+       </copy>
+       <copy file="LICENSE.txt" todir="${dist.dir}" overwrite="true"/>
+       <copy todir="${dist.dir}/licenses/">
+           <fileset dir="licenses/"/>
+       </copy>
+       <copy file="README.txt" todir="${dist.dir}" overwrite="true"/>
+       <delete dir="${build.dir}"/>
+    </target>
+    
+    <target name="-javadoc-build">
+        <!--
+        need to instantiate this target
+        -->
+    </target>
+    
+</project>

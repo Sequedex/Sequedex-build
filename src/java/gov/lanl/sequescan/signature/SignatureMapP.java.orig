@@ -1,0 +1,255 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gov.lanl.sequescan.signature;
+
+import gnu.trove.map.TLongObjectMap;
+import gnu.trove.map.hash.TLongObjectHashMap;
+import static gov.lanl.sequescan.signature.SignatureMap.FIELD_DELIM;
+import static gov.lanl.sequescan.signature.SignatureMap.fromHexString;
+import gov.lanl.sequtils.util.StringOps;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+/**
+ *
+ * @author jcohn
+ */
+abstract public class SignatureMapP<K,V> extends SignatureMap<K,V> {
+    
+    TLongObjectMap<short[]> map;
+    
+    public SignatureMapP(SignatureModule module) {
+        super(module);
+    }
+    
+    public SignatureMapP(Boolean hFlag, Integer sigCntEst) {
+        super(hFlag,sigCntEst);
+    }
+    
+//
+//    
+//    @Override
+//    public boolean readPhyloMapFromModule() {
+//        
+//        if (map != null && !map.isEmpty()) {
+//            logger.info("Map is already populated with phylo data");
+//            return true;
+//        }
+//        
+//        
+//        String msg = "Start reading phylo map from "+
+//            dataModule.getModulePath();      
+//        logger.info(msg);
+//        
+//        if (hexFlag == null) {
+//            logger.error("Hex Flag is missing from data module "+
+//                dataModule.getModulePath());
+//            return false;
+//        }
+//        
+//        int cnt;
+//        
+//        initMap();
+//       
+//        try {
+//            BufferedReader phyloStream = dataModule.getSignatureReader();
+//            if (phyloStream == null) 
+//                return false;
+//  
+//            String line = phyloStream.readLine();
+//            cnt = 0;
+//            while (line != null) {
+//                StringTokenizer stok = new StringTokenizer(line,FIELD_DELIM);
+//                if (stok.countTokens() != 2) {
+//                    logger.error("Line does not have 2 tokens: "+line);
+//                    map = null;
+//                    return false;
+//                }
+//                String signature = stok.nextToken();
+//                Short node = StringOps.getShort(stok.nextToken());
+//                if (node == null) {
+//                    logger.error("Problem parsing node field in line: "+
+//                        line);
+//                    return false;
+//                }
+//                
+//                short[] list = getNewValueListWithNode(node);
+//
+//                Object signatureObj;
+//                if (Objects.equals(hexFlag, Boolean.TRUE)) {
+//                    signatureObj = fromHexString(signature);
+//                }
+//                else
+//                    signatureObj = signature;
+//                
+//                long sig = (Long) signatureObj;
+// 
+//                map.put(sig,list);
+//                cnt++;
+//
+//                line = phyloStream.readLine();
+//            }
+//            
+//            
+//            
+//        } catch (IOException ex) {
+//            logger.error("Problem reading signatures from "+
+//                dataModule.getModulePath()+": "+ex.getMessage());
+//            return false;
+//        }
+//        
+//        logger.info(cnt+" signatures read with node assignment");
+////        logger.info(map.size()+" elements in map");
+//        
+////        // Get current size of heap in bytes
+////        long heapTotalSize = Runtime.getRuntime().totalMemory(); 
+////
+////        // Get maximum size of heap in bytes. The heap cannot grow beyond this size.
+////        // Any attempt will result in an OutOfMemoryException.
+////        long heapMaxSize = Runtime.getRuntime().maxMemory();
+////
+////         // Get amount of free memory within the heap in bytes. This size will increase 
+////        // after garbage collection and decrease as new objects are created.
+////        long heapFreeSize = Runtime.getRuntime().freeMemory(); 
+////        long heapUsedSize = heapTotalSize - heapFreeSize;
+////        logger.info("totalHeap = "+heapTotalSize+" ; maxHeap = "+heapMaxSize+" heapUsedSize = "+heapUsedSize+" ; heapFreeSize = "+heapFreeSize);
+//        return true;
+//    }
+//
+//       // implement abstract methods
+//   
+//    @Override
+//    public Short getNode(Object signature) {
+//        if (map == null)
+//            return null;
+//        Long sig = (Long) signature;
+//        short[] values = map.get(sig);
+//        if (values == null || values.length == 0)
+//            return null;
+//        else
+//            return values[0];
+//    }
+//    
+//    @Override
+//    public Set<Short> getFunctions (Object signature) {
+// 
+//        if (map == null)
+//            return null;
+//        Long sig = (Long) signature;
+//        short[] values = map.get(sig);
+//        if (values == null || values.length < 2)
+//            return null;
+//        else {
+//            Set<Short> functionSet = new HashSet<>();
+//            for (int i=0; i<values.length-1; i++)
+//                functionSet.add(values[i+1]);
+//            return functionSet;
+//        }
+//        
+//    }
+//    
+//    @Override
+//    protected void initMap() {
+//        if (sigCountEstimate == null && dataModule != null) 
+//            sigCountEstimate = dataModule.getSignatureCount();
+//        if (sigCountEstimate == null) {
+//            map = new TLongObjectHashMap<>(); // perhaps this should be set to some minimal number (e.g. number of signatures in virus list?)
+//            logger.info("Signature Count is missing from data module - signature map loading and/or memory allocation may be less efficient");
+//        }
+//        else {
+//            Double initCapacity = ((double) sigCountEstimate/0.75) + (double) 100;
+//            logger.debug("HashMap initial capacity is "+initCapacity);
+//            map = new TLongObjectHashMap<>(initCapacity.intValue());
+//        }
+// 
+//    }
+//    
+//    @Override
+//    protected short[] getNewValueListWithNode(Short node) {
+//        if (node == null)
+//            return null;
+//        short[] list = new short[1];     
+//        list[0] = node;
+//        return list;
+//    }
+//    
+//    @Override
+//    protected String addFunctionsToList(Object signatureObj, String[] functionTokens) {
+//        
+//        Long sig = (Long) signatureObj;
+//        short[] list = map.get(sig);
+//        if (list == null) 
+//            return "Signature is missing from phylogeny map";
+//        
+//        int functionCnt = functionTokens.length;
+//        int newListLength = list.length + functionCnt;
+//        short[] newList = new short[newListLength];
+//        System.arraycopy(list, 0, newList, 0, list.length);
+//        
+//        for (int i=0; i<functionCnt; i++) {
+//            Short functionIndx = StringOps.getShort(functionTokens[i]);
+//            if (functionIndx == null) 
+//                return "Non-numeric function index";
+//            else 
+//                newList[list.length+i] = functionIndx;
+//        }
+//        map.put(sig, newList);
+//        return null;
+//    }
+//    
+//    @Override
+//    protected String addFunctionToKmer(Object kmer, Short functionIndx) {
+//        Set<Short> currentFunctions = getFunctions(kmer);
+//        if (currentFunctions == null || !currentFunctions.contains(functionIndx)) {
+//            String[] functionTokens = new String[1];
+//            functionTokens[0] = functionIndx.toString();
+//            String errorMsg = addFunctionsToList(kmer, functionTokens);
+//            if (errorMsg != null) {
+//                return errorMsg;
+//            }
+//            else return null;
+//        }
+//        else
+//            return "Problem adding function index "+functionIndx.toString()+
+//                " to kmer "+kmer;
+//    }
+//
+//    @Override
+//    public int getSize() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public int getSignatureCount() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public Set<Object> getSignatureSet() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public boolean readPhyloMapFromSignatureFile(String filePath) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public void setNullMap() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    @Override
+//    public boolean isMapNull() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+// 
+//    
+}

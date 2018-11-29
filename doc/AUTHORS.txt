@@ -1,0 +1,19 @@
+Joel Berendzen helped define the applications, was the architect for
+the algorithms, wrote the packaging and launcher scripts, and led the coding team.
+
+Judith Cohn implemented the algorithms, wrote the majority of the
+Java source code, and did much of the data wrangling needed to develop the data 
+modules and algorithms.
+
+Mira Dimitrijevic wrote the Java code that implements the command-line,
+configuration file, licensing, and miscellaneous other features.  She also was
+the primary developer for the Sequinator HTML5 application for displaying
+output.
+
+Ben McMahon did the phylogenetic calculations on which the algorithms
+rely, wrote the documentation, did the lion's share of functional testing, and 
+pioneered the applications.
+
+Nick Hengartner managed the overall project and contributed
+statistical analysis, including overseeing development of an R-based tool 
+for viewing Sequescan output.
