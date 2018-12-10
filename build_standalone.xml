@@ -5,7 +5,7 @@
     <property name="dist.dir" location="sequedex"/>
     <property name="lib.dir" location="${dist.dir}/lib"/>
     <property name="liblib.dir" location="${lib.dir}/lib"/>
-    <property name="dep.dir" location="lib"/>
+    <property name="dep.dir" location="thirdPartyJarFiles"/>
     <property name="jar.file" location="${lib.dir}/sequescan.jar"/>
     <description> Sequedex V2 build file</description>
     
