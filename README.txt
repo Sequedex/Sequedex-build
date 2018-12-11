@@ -1,5 +1,5 @@
-This is Sequedex version 2.1.1, build 112618.  The release for this build is
-v2.r20181210 and the Los Alamas National Laboratory Codes ID is C18101.
+This is Sequedex version 2.1.1, build 20181211.  The release for this build is
+v2.r20181211 and the Los Alamos National Laboratory Codes ID is C18101.
 
 Quick start instructions for installing and running Sequedex are 
 available as a pdf file (SequedexQuickStart.pdf) or Word document

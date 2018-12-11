@@ -11,7 +11,7 @@ package gov.lanl.sequtils.constants;
  */
 public interface BuildConstants {
     
-    public static final String BUILDSTRING = "112618";
+    public static final String BUILDSTRING = "20181211";
     public static final String SEQUEDEX_VERSION = "2.1.1";
     
 }
