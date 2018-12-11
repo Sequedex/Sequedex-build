@@ -10,7 +10,7 @@ Step 1.
 Either
 
 a)  clone (or checkout) Sequedex project from github into <git-top-level> for latest version of source code; or
-b)  download a Sequedex release.  
+b)  download the source code for Sequedex release (either .zip or .tgz) from the release assets.
 
 
 Step 2.
@@ -19,7 +19,10 @@ If it does not exist, create a subdirectory called data in <git-top-level>. The
 data subdirectory should be populated with data modules to be included in the 
 sequedex distribution you are building.  Note: additional data modules may be 
 added later by the user but at least one data module is required to run Sequedex.  
-The easiest way to populate the data directory is to find sequedex.zip in the release, unzip it, and copy the files in sequedex/data directory.  For example, 
+The easiest way to populate the data directory is download sequedex.zip or sequedex.tgz 
+from the release assets, then uncompress.  This will generate a directory called
+sequedex, which contains all the files, including executables, needed to run Sequedex. 
+Copy the files in sequedex/data to <git-top-level>/data.  For example, 
 from the command line on Linux or Mac:
 
 cp -rp <path-to-unzipped-sequedex-dir>/data/* <git-top-level>/data
@@ -29,9 +32,10 @@ Step 3.
 If it does not exist, create a subdirectory called thirdPartyJarFiles in 
 <git-top_level>.  This subdirectory must contain the required third party 
 jar files (and nothing else). See LICENSE.txt for current list of
-required jar files. The easiest way to populate this subdirectory is similar to copying the files for the data directory - i.e. find sequedex.zip in the top level of the release,
-unzip it, and copy the files in sequedex/lib/lib to thirdPartyJarFiles.
-For example, from the command line on Linux or Mac:
+required jar files. The easiest way to populate this subdirectory is similar to 
+the instructions in Step 2 for the data directory - i.e. find sequedex.zip or
+sequedex.tgz in the assets for the release, uncompress it, and copy the files in 
+sequedex/lib/lib to thirdPartyJarFiles.  For example, from the command line on Linux or Mac:
 
 cp -rp <path-to-unzipped—sequedex-dir>/lib/lib/* <git-top-level>/thirdPartyJarFiles
 

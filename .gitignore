@@ -5,6 +5,8 @@ manifest.mf
 build.xml
 /data/
 /sequedex/
+sequedex.tgz
+sequedex.zip
 /lib/
 # OS generated files #
 ######################
