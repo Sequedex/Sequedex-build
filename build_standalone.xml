@@ -34,8 +34,12 @@
         <path id="jarpath">
             <fileset dir="${liblib.dir}" includes="**/*.jar"/>
         </path>
+        <path id="fullpath">
+            <path refid="jarpath"/>
+            <pathelement path="${liblib.dir}"/>
+        </path>
         <manifestclasspath property="lib.list" jarfile="${jar.file}">
-            <classpath refid="jarpath"/>
+            <classpath refid="fullpath"/>
         </manifestclasspath>
         <jar destfile="${jar.file}" basedir="${classes.dir}">
             <manifest>
@@ -64,6 +68,7 @@
            <fileset dir="licenses/"/>
        </copy>
        <copy file="README.txt" todir="${dist.dir}" overwrite="true"/>
+       <copy file="${src.dir}/logback.xml" todir="${liblib.dir}" overwrite="true"/>
        <delete dir="${build.dir}"/>
     </target>
     

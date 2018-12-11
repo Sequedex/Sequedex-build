@@ -7,6 +7,9 @@ build.xml
 /sequedex/
 sequedex.tgz
 sequedex.zip
+/sequedex_v2.testdata/
+sequedex_v2.testdata.tgz
+sequedex_v2.testdata.zip
 /lib/
 # OS generated files #
 ######################
