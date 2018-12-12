@@ -10,7 +10,7 @@ Step 1.
 Either
 
 a)  clone (or checkout) Sequedex project from github into <git-top-level> for latest version of source code; or
-b)  download the source code for Sequedex release (either .zip or .tgz) from the release assets.
+b)  download the source code for Sequedex release (either .zip or .tar.gz) from the release assets.
 
 
 Step 2.
