@@ -171,7 +171,7 @@ public interface AppConstants {
     public static final String TREE_DIR = "trees";
     public static final String TREE_PHYLOXML = "tree.phyloxml";
     public static final String DEFAULT_ARCHY_CONFIG = "_aptx_configuration_file";
-    public static final String NOVALID_ARCHY_CONFIG = "_aptx_config_life2550";
+    // public static final String NOVALID_ARCHY_CONFIG = "_aptx_config_life2550";
     
     
 }

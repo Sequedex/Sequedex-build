@@ -5,10 +5,12 @@ Quick start instructions for installing and running Sequedex are
 available as a pdf file (SequedexQuickStart.pdf) or Word document
 (SequedexQuickStart.docx) in the doc directory.
 
-For more information on Sequedex, visit http://sequedex.lanl.gov. 
-It should be noted that this website is currently out of date 
-having been written originally for Sequedex version 1.  An updated website is in 
-development. In the meantime, a lot of the website is still relevant.
+For more information on Sequedex, visit http://sequedex.lanl.gov.
+Online documentation can be found at  https://sequedex.readthedocs.io/en/latest/.
+It should be noted that both the sequedex website and the online documentation were 
+written for Sequedex Version 1 and thus are currently out of date.  However, updates
+for Version 2 are under development;  and, in any case, a lot of the website and 
+documentation is still relevant.
 
 Data modules distributed either with the software or from 
 sequedex.lanl.gov are covered by Los Alamos National Laboratory 
