@@ -27,6 +27,8 @@ from the command line on Linux or Mac:
 
 cp -rp <path-to-unzipped-sequedex-dir>/data/* <git-top-level>/data
 
+Data modules may also be found at https://sequedex.lanl.gov/dataModules.
+
 Step 3.
 
 If it does not exist, create a subdirectory called thirdPartyJarFiles in 
